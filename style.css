@@ -1,0 +1,45 @@
+*{
+  margin:0px 0px;
+  padding:0px 0px;
+}
+a{
+  text-decoration: none;
+}
+/* 易错 [id类用#号][class类用 .] */
+#main kbd{
+  border: 1px solid red;
+  height: 4em;
+  width: 4em;
+  display: inline-block;
+  vertical-align: top;  /*与display:inline-block配套使用*/
+  text-transform: uppercase;
+  position:relative;
+  color: #999;
+  font-size:16px;
+  font-family: Frutiger,Helvetica,sans-serif;
+}
+/*选中的是 选择器id=main的第二个div儿子*/
+#main>div:nth-child(2){
+  margin-left:2em;
+}
+/*选中的是 选择器id=main的第三个div儿子*/
+#main>div:nth-child(3){
+  margin-left:4em;
+}
+
+/*父包裹器[div,id=main] 为不定宽块状元素,要实现内容居中，法一定宽，法二变为内联，父元素加text-align:center;*/
+#main{display: inline-block; }  
+main{text-align: center;}
+
+#main>div{
+  line-height:54px;    /*父元素 #main>div高度固定，子元素为单行内联文本，垂直居中设置：height=line-height*/
+}
+kbd>button{
+  position: absolute;
+  left:0px;
+  top:0px;
+  display:none;
+}
+kbd:hover > button{
+  display: inline-block;
+}
