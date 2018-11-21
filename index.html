@@ -12,10 +12,13 @@
 
   </header>
   <main>
-      <div class="wrapper" id="main">     
+      
+      <div class="wrapper" id="main">    
       </div>
       <script>
-          //定义键盘数组   //疑惑，引号加不加有什么影响
+
+           //1.0 初始化数据
+          //定义键盘值数组   //疑惑，引号加不加有什么影响
           var keys = {
               0:{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p','length':10},
               1:{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l','length':9},
@@ -24,32 +27,7 @@
           }
           //定义网站hash表
           var hash = {
-            'q':'qq.com',
-            'w':'weibo',
-            'e':'ele.me',
-            'r':'renren.com',
-            't':'taobao.com',
-            'y':'youtube.com',
-            'u':'uc.com',
-            'i':'iqiyi.com',
-            'o':'opera.com',
-            'p':undefined,
-            'a':'acfun.tv',
-            's':'sohu.com',
-            'd':'dribbble.com',
-            'f':'facebook.com',
-            'g':'google.com',
-            'h':undefined,
-            'j':undefined,
-            'k':undefined,
-            'l':undefined,
-            'z':'zhihu.com',
-            'x':undefined,
-            'c':'css-tricks.com',
-            'v':'visualgo.net',
-            'b':undefined,
-            'n':undefined,
-            'm':undefined,
+            'q':'qq.com','w':'weibo','e':'ele.me','r':'renren.com','t':'taobao.com','y':'youtube.com','u':'uc.com','i':'iqiyi.com','o':'opera.com','p':undefined,'a':'acfun.tv','s':'sohu.com','d':'dribbble.com','f':'facebook.com','g':'google.com','h':undefined,'j':undefined,'k':undefined,'l':undefined,'z':'zhihu.com','x':undefined,'c':'css-tricks.com','v':'visualgo.net','b':undefined,'n':undefined,'m':undefined,
           }
           //每次优先读取localStorage 里 randomN 对应的hash 每次刷新网页重新读档
           var hashInLocalStorage = JSON.parse(localStorage.getItem('randomN') || 'null')
@@ -57,41 +35,60 @@
             hash = hashInLocalStorage  
           }
            
+          //2.0 生成键盘
           //用js写html //div自动换行功能//创建div和kbd，和kbd内容
-          index=0  //声明变量index  //c语言中的i
+          var index=0  //声明变量index  //c语言中的i
           while(index < keys['length']){         // 0 1 2 
-            div = document.createElement('div') //用js代码给文档创建三个标签元素div,注意引号
-            row = keys[index]                   //第一个数组 第二个数组 第三个数组
-            index2 = 0                          //声明变量index2
-            while(index2 < row['length']){
-              kbd = document.createElement('kbd')
-              button = document.createElement('button')
-              kbd.textContent = row[index2]   //给kbd添加文本内容 .textContent不是一个函数, .textContent('hi')错误
-              button.textContent = 'E'        //按键功能 edit
+            var div = document.createElement('div') //用js代码给文档创建三个标签元素div,注意引号
+            div.className = 'row'
+            var row = keys[index]                   //第一个数组 第二个数组 第三个数组
+            var index2 = 0                          //声明变量index2 
+            while(index2 < row['length']){          // 0 1 2 3 4 5
+              var kbd = document.createElement('kbd')
+              kbd.className = 'key'
+              var button = document.createElement('button')
               button.id = row[index2]         //给每个编辑按键加上对应的id
+              button.textContent = 'E'        //按键功能 edit
               button.onclick = function(randomName){  //button被点击了
-                //console.log(randomName) 这里的randonName就是
-                key = randomName['target']['id']   //q w e r t y 取出用户要编辑哪一个kbd的键值
-                //console.log(randomName['target']['id']  /*这里用key是错误的，这里没有按下kbd没有['key']，不能像下面一样用*/)
-                x = prompt('请输入一个网址')         //获取用户要更改的网址
-                hash[key] = x                           //hash变更
-                //console.log(hash)                  //每次都打出hash
-                //hash变更后要存档到randomN
-                localStorage.setItem('randomN',JSON.stringify(hash)) //JSON.stringify(hash)是把hash变成字符串的
+                //console.log(randomName) 这里的randomName就是事件click 哈希表的名称,打印出事件的所有信息，
+              button2 = randomName['target'] //randomName['target']是用户点击的元素
+              img2 = button2.nextSibling  //button2.nextSibling 可以取到当前被点击的button2的下一个兄弟
+              var key = button2['id']   //q w e r t y 取出用户要编辑哪一个kbd的键值
+              //console.log(randomName['target']['id']  /*这里用key是错误的，这里没有按下kbd没有['key']，不能像下面一样用*/)
+              var x = prompt('请输入要变更的网址域名')         //获取用户要更改的网址
+              hash[key] = x                              //hash变更
+              //console.log(hash)                  //每次都打出hash
+              //hash变更后要立刻存档到randomN
+              localStorage.setItem('randomN',JSON.stringify(hash)) //JSON.stringify(hash)是把hash变成字符串的                              //hash变更
+              if(hash[key]){img2.src = 'http://'+hash[key]+'/favicon.ico'}  //对应网站icon也要变更
+              else{img2.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'}
+              /*监听失败事件*//*console.log('获取icon失败了')*/
+              img2.onerror = function(shijianName){shijianName.target.src = './failphoto.jpg'}
               }
+              var span = document.createElement('span') 
+              span.className = 'text'
+              span.textContent = row[index2]   //q w e r t 给kbd添加文本内容 .textContent不是一个函数, .textContent('hi')错误
+              var img = document.createElement('img')
+              kbd.appendChild(span)
               kbd.appendChild(button)
+              kbd.appendChild(img)
               div.appendChild(kbd)
+              if(hash[row[index2]]){img.src = 'http://' + hash[row[index2]] + '/favicon.ico'}
+              else{img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'}
+              /*监听失败事件*//*console.log('获取icon失败了')*/
+              img.onerror = function(shijianName){shijianName.target.src = './failphoto.jpg'}
               index2 = index2 + 1
             }
             main.appendChild(div)             //把div标签放到main元素里，即main父标签，div子标签 
             index=index+1                     //漏了页面陷入死循环
           }
           
+          //3.0 监听键盘事件
           document.onkeypress = function(randomName){
             //console.log('你按下的这个键所有信息是：')
             //console.log(randomName)   //猜想randomName是hash表名
-            key = randomName['key']     //获取用户的按键值 q w e r t y 这的key必须加引号'key'    
-            website = hash[key]         //qq.com weibo.com taobao.com 这的key不能加引号 key  
+            var key = randomName['key']     //获取用户的按键值 q w e r t y 这的key必须加引号'key'    
+            var website = hash[key]         //qq.com weibo.com taobao.com 这的key不能加引号 key  
             //console.log(website)      //console.log()是调试工具
             //location.href = 'http://'+website     //模拟用户在地址栏输入地址，修改当前网址为按键地址
             window.open('http://'+website,'_blank') //新开窗口打开用户按键的网站
