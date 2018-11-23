@@ -39,6 +39,6 @@ kbd>img{width:15px;height:15px;background-color: transparent;position: absolute;
         border:0.1px solid transparent;border-radius:5px;}
 /*hover kbd时出现button*/
 #main>div>kbd:hover{color:#b1d742;font-weight: bold;box-shadow: 0px 0px 14px 1px rgba(101,194,148,0.9);transition:0.3s;}
-kbd:hover > button{display: inline-block;}
+kbd:hover > button{display: inline-block;outline: none;}
 kbd:hover > .text{transform: scale(1.6);} /*hover的时候字体变大，但是不会把盒子撑大，也就是页面并不会动*/
 kbd>button:hover{background-color: #121a2a;cursor:pointer}
