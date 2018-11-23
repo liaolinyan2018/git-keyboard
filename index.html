@@ -125,7 +125,7 @@
                     if(hash[key]){img2.src = 'http://'+hash[key]+'/favicon.ico'}  //对应网站icon也要变更
                     else{img2.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'}
                     /*监听失败事件*//*console.log('获取icon失败了')*/
-                    img2.onerror = function(shijianName){shijianName.target.src = 'https://i.loli.net/2018/11/21/5bf545065c22b.jpg'}
+                    img2.onerror = function(shijianName){shijianName.target.src = '//i.loli.net/2018/11/21/5bf545065c22b.jpg'}
                     }
                   return button
           }
@@ -136,7 +136,7 @@
                 else{img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'}
                /*监听失败事件*//*console.log('获取icon失败了')*/
                 img.onerror = function(shijianName){
-                   shijianName.target.src = './failphoto.jpg'
+                   shijianName.target.src = '//i.loli.net/2018/11/21/5bf545065c22b.jpg'
                    }
                 return img
           }
