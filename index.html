@@ -117,7 +117,7 @@
                     img2 = button2.nextSibling  //button2.nextSibling 可以取到当前被点击的button2的下一个兄弟
                     var key = button2['id']   //q w e r t y 取出用户要编辑哪一个kbd的键值
                     //console.log(randomName['target']['id']  /*这里用key是错误的，这里没有按下kbd没有['key']，不能像下面一样用*/)
-                    var x = prompt('请输入要变更的网址域名')         //获取用户要更改的网址
+                    var x = prompt('请输入要变更的网址域名,如：iqiyi.com或baby.taobao.com')         //获取用户要更改的网址
                     hash[key] = x                              //hash变更
                     //console.log(hash)                  //每次都打出hash
                     //hash变更后要立刻存档到randomN
