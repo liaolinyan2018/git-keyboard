@@ -1,44 +1,25 @@
 *{margin:0px 0px;padding:0px 0px;}
 a{text-decoration: none;}
-/* 易错 [id类用#号][class类用 .] */
-#main kbd{
-  /*display: inline-block; //当时为了设置kbd的宽高
-  vertical-align: top;  /*与display:inline-block配套使用*/
-  text-transform: uppercase;position:relative;color: #9C9C9C;font-size:16px;font-family: Helvetica,sans-serif;
-}
-.key{
+body{background: grey url(./img/wall-min.jpg) no-repeat center center;background-size: cover;} 
+main{text-align: center;display: flex;justify-content:center;align-items: center;height: 100vh}
+.wrapper{display: inline-block;background-color: rgba(205,230,199,0.26666666);padding:23px 23px;border:1px solid transparent;border-radius:10px;} 
+.wrapper .key{text-transform: uppercase;position:relative;color: #9C9C9C;font-size:16px;font-family: Helvetica,sans-serif;
   margin-right: 10px;height: 46px;width: 54px; border:1px solid #ffffff;border-radius:10px;
-  /*线性渐变*/
   background: linear-gradient(to bottom, #E4E4E4 0%,#fefefe 100%);
-  /*可改阴影*/
   box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.88), 0px -1px 0px 0px rgba(255, 255, 255, 0.88), 1px 5px 1px 0px rgba(212,213,217,0.9);
-  /*变成弹性盒，垂直居中，左右居中，布局三句话*/
   display: inline-flex;align-items: center;justify-content: center;
 }
-.row>kbd:last-child{margin-right:0px;} /*每一行的最后一个kbd不需要由边距*/
-.row{margin-bottom:10px;}
-/*选中的是 选择器id=main的第二个div儿子*/
-#main>div:nth-child(2){margin-left: -32px;}
-/*选中的是 选择器id=main的第三个div儿子*/
-#main>div:nth-child(3){margin-left: -100px;margin-bottom:0px;}
-/*父包裹器[div,id=main] 为不定宽块状元素,要实现内容居中，法一定宽，法二变为内联，父元素加text-align:center;*/
-#main{display: inline-block;background-color: rgba(205,230,199,0.26666666);padding:23px 23px;border:1px solid transparent;border-radius:10px;} 
-
-body{background: grey url(./wall-min.jpg) no-repeat center center;/*background有六个值，最后一个是默认值*/
-     background-size: cover;} 
-main{text-align: center;display: flex;justify-content:center;align-items: center;height: 100vh} /*viewport height 可视高度和屏幕一样高*/
-
-/*#main>div{            //改用flex布局
-  line-height:50px;    /*父元素 #main>div高度固定，子元素为单行内联文本，垂直居中设置：height=line-height*/
-
-kbd>button{position: absolute;right:3px;bottom:2px;width:16px;height:16px;
+.wrapper .row{margin-bottom:15px;}
+.wrapper .row > kbd:last-child{margin-right:0px;}
+.wrapper > .row:nth-child(2){margin-left: -32px;}
+.wrapper > .row:nth-child(3){margin-left: -100px;margin-bottom:0px;}
+.wrapper .key > button{position: absolute;right:3px;bottom:2px;width:16px;height:16px;
           background-color:#a3cf62;border:0.1px solid transparent;border-radius: 5px;display:none;
-          font: 750 10.3333px Arial;color:#ffffff;
-          }
-kbd>img{width:15px;height:15px;background-color: transparent;position: absolute;left:2px;bottom:2px;
+          font: 750 10.3333px Arial;color:#ffffff;}
+.wrapper .key > img{width:15px;height:15px;background: transparent;position: absolute;left:2px;bottom:2px;
         border:0.1px solid transparent;border-radius:5px;}
-/*hover kbd时出现button*/
-#main>div>kbd:hover{color:#b1d742;font-weight: bold;box-shadow: 0px 0px 14px 1px rgba(101,194,148,0.9);transition:0.3s;}
-kbd:hover > button{display: inline-block;}
-kbd:hover > .text{transform: scale(1.6);} /*hover的时候字体变大，但是不会把盒子撑大，也就是页面并不会动*/
-kbd>button:hover{background-color: #121a2a;cursor:pointer;outline: none;}
+
+.wrapper .row .key:hover{color:#b1d742;font-weight: bold;box-shadow: 0px 0px 14px 1px rgba(101,194,148,0.9);transition:0.3s;}
+.wrapper .row .key:hover > button{display: inline-block;}
+.wrapper .row .key:hover > .text{transform: scale(1.6);} /*hover的时候字体变大，但是不会把盒子撑大，也就是页面并不会动*/
+.wrapper .row .key > button:hover{background-color: #121a2a;cursor:pointer;outline: none;}
